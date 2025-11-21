@@ -24,7 +24,7 @@ a {
     color: inherit;
 }
 
-/* Contenedor global para centrar contenido */
+/* Contenedor global */
 .section-container,
 .hero-section,
 .about-section,
@@ -123,7 +123,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centrado horizontal */
+    align-items: center;
     flex: 1 1 300px;
     gap: 1.5rem;
     text-align: center;
@@ -146,21 +146,28 @@ a {
     font-family: 'Inter', sans-serif;
 }
 
+/* Contenedor de botones dentro del hero */
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    width: 100%;
+}
+
+.hero-buttons a {
+    flex: 1 1 200px; /* que entren dentro del cuadro */
+    text-align: center;
 }
 
 .hero-buttons .btn-primary,
 .hero-buttons .btn-secondary {
-    padding: 0.9rem 1.8rem;
+    width: 100%; /* ocupan todo el ancho disponible */
+    padding: 0.9rem 1rem;
     font-size: 1rem;
     border-radius: 12px;
     font-weight: 600;
-    text-align: center;
     transition: all 0.4s ease;
     opacity: 0;
     transform: translateY(20px);
@@ -195,7 +202,7 @@ a {
 
 .hero-photo {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -374,7 +381,6 @@ textarea {
    MEDIA QUERIES (RESPONSIVE)
 ========================= */
 
-/* Tablets y pantallas medianas */
 @media screen and (max-width: 992px) {
     .hero-section {
         flex-direction: column;
@@ -392,7 +398,6 @@ textarea {
     }
 }
 
-/* Móviles y pantallas pequeñas */
 @media screen and (max-width: 480px) {
     .hero-title { font-size: 1.8rem; }
     .hero-subtitle { font-size: 1rem; }
