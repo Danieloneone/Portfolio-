@@ -29,7 +29,7 @@ animatedElements.forEach(el => {
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
-    if(window.scrollY > 50 && window.innerWidth <= 768){ // solo en pantallas <= 768px
+    if(window.scrollY > 50 && window.innerWidth <= 768){
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
@@ -58,4 +58,37 @@ navLinks.forEach(link => {
             navToggle.classList.remove('active');
         }
     });
+});
+
+
+// =========================
+// FORMULARIO: MENSAJE DE ENVÍO EXITOSO
+// =========================
+
+const form = document.querySelector('.contact-form');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita que recargue la página
+
+    // Crear mensaje de éxito
+    const successMsg = document.createElement("p");
+    successMsg.textContent = "✔ ¡Tu mensaje fue enviado con éxito!";
+    successMsg.style.color = "white";
+    successMsg.style.background = "#28a745";
+    successMsg.style.padding = "12px";
+    successMsg.style.borderRadius = "8px";
+    successMsg.style.marginTop = "10px";
+    successMsg.style.textAlign = "center";
+    successMsg.style.fontWeight = "600";
+
+    // Agregar debajo del formulario
+    form.appendChild(successMsg);
+
+    // Reset al formulario
+    form.reset();
+
+    // Eliminar mensaje luego de 4 segundos
+    setTimeout(() => {
+        successMsg.remove();
+    }, 4000);
 });
