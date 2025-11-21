@@ -21,3 +21,18 @@ const animatedElements = document.querySelectorAll(
 animatedElements.forEach(el => {
     observer.observe(el);
 });
+
+
+// =========================
+// NAVBAR COMPACTO AL SCROLL (solo móviles/tablets)
+// =========================
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 50 && window.innerWidth <= 768){ // solo en pantallas <= 768px
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
