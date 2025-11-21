@@ -137,14 +137,17 @@
     <section id="contact" class="contact-section">
         <h2 class="section-title">Contacto</h2>
 
-        <!-- FORMULARIO PROFESIONAL (FORMSPREE) -->
-        <form class="contact-form" action="https://formspree.io/f/mjkzkpab" method="POST">
+        <!-- FORMULARIO (FORMSPREE) -->
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mjkzkpab" method="POST">
             <input type="text" name="nombre" placeholder="Tu nombre" required>
             <input type="email" name="email" placeholder="Tu email" required>
             <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
-
             <button type="submit" class="btn-primary">Enviar</button>
         </form>
+
+        <p id="successMessage" class="success-message" style="display:none;">
+            ¡Mensaje enviado con éxito! Puedes enviar otro si deseas.
+        </p>
     </section>
 
 
@@ -165,4 +168,5 @@
 </body>
 
 </html>
+
 
