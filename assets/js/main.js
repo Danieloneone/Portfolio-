@@ -36,3 +36,26 @@ window.addEventListener('scroll', () => {
     }
 });
 
+
+// =========================
+// MENÚ DESPLEGABLE (HAMBURGER) - MOBILE
+// =========================
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');  // Animación del botón
+    navMenu.classList.toggle('active');    // Mostrar/ocultar menú
+});
+
+// Cerrar menú al hacer click en un link
+const navLinks = document.querySelectorAll('.nav-links li a');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if(navMenu.classList.contains('active')){
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        }
+    });
+});
