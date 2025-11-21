@@ -6,11 +6,11 @@
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
-            entry.target.classList.add('visible'); // agregamos la clase visible
-            observer.unobserve(entry.target); // dejamos de observar para que no se repita
+            entry.target.classList.add('visible'); 
+            observer.unobserve(entry.target); 
         }
     });
-}, {threshold: 0.2}); // 20% del elemento visible
+}, {threshold: 0.2});
 
 // Seleccionamos todos los elementos que queremos animar
 const animatedElements = document.querySelectorAll(
@@ -44,8 +44,8 @@ const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
 navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');  // Animación del botón
-    navMenu.classList.toggle('active');    // Mostrar/ocultar menú
+    navToggle.classList.toggle('active');  
+    navMenu.classList.toggle('active');    
 });
 
 // Cerrar menú al hacer click en un link
@@ -62,33 +62,35 @@ navLinks.forEach(link => {
 
 
 // =========================
-// FORMULARIO: MENSAJE DE ENVÍO EXITOSO
+// FORMULARIO: MENSAJE DE ENVÍO EXITOSO + RESET
 // =========================
 
 const form = document.querySelector('.contact-form');
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Evita que recargue la página
+if (form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Evita recargar la página
 
-    // Crear mensaje de éxito
-    const successMsg = document.createElement("p");
-    successMsg.textContent = "✔ ¡Tu mensaje fue enviado con éxito!";
-    successMsg.style.color = "white";
-    successMsg.style.background = "#28a745";
-    successMsg.style.padding = "12px";
-    successMsg.style.borderRadius = "8px";
-    successMsg.style.marginTop = "10px";
-    successMsg.style.textAlign = "center";
-    successMsg.style.fontWeight = "600";
+        // Crear mensaje de éxito
+        const successMsg = document.createElement("p");
+        successMsg.textContent = "✔ ¡Tu mensaje fue enviado con éxito!";
+        successMsg.style.color = "white";
+        successMsg.style.background = "#28a745";
+        successMsg.style.padding = "12px";
+        successMsg.style.borderRadius = "8px";
+        successMsg.style.marginTop = "10px";
+        successMsg.style.textAlign = "center";
+        successMsg.style.fontWeight = "600";
 
-    // Agregar debajo del formulario
-    form.appendChild(successMsg);
+        // Agregar debajo del formulario
+        form.appendChild(successMsg);
 
-    // Reset al formulario
-    form.reset();
+        // Reset al formulario
+        form.reset();
 
-    // Eliminar mensaje luego de 4 segundos
-    setTimeout(() => {
-        successMsg.remove();
-    }, 4000);
-});
+        // Eliminar mensaje luego de 4 segundos
+        setTimeout(() => {
+            successMsg.remove();
+        }, 4000);
+    });
+}
