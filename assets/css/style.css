@@ -120,8 +120,8 @@ a {
 }
 
 .hero-left {
-    flex: 1;
-    min-width: 320px;
+    flex: 1 1 100%;
+    min-width: 0;
     padding-right: 2rem;
 }
 
@@ -148,6 +148,7 @@ a {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .hero-buttons .btn-primary,
@@ -183,11 +184,12 @@ a {
 }
 
 .hero-right {
-    flex: 1;
-    min-width: 320px;
+    flex: 1 1 100%;
+    min-width: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .hero-photo {
@@ -270,7 +272,7 @@ h3 {
     border-radius: 18px;
     padding: 2rem;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.6s ease, transform 0.6s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.6s ease;
     margin-bottom: 2rem;
     font-family: 'Inter', sans-serif;
     text-align: center;
@@ -293,8 +295,8 @@ h3 {
 .skills-grid,
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
 }
 
 /* =========================
@@ -383,15 +385,17 @@ textarea {
    MEDIA QUERIES (RESPONSIVE)
 ========================= */
 
-@media screen and (max-width: 768px) {
+/* Tablets y pantallas medianas */
+@media screen and (max-width: 992px) {
     .hero-section {
         flex-direction: column;
-        padding: 3rem 2rem;
+        padding: 4rem 2rem;
     }
 
     .hero-left, .hero-right {
         padding-right: 0;
         text-align: center;
+        flex: 1 1 100%;
     }
 
     .hero-buttons {
@@ -400,14 +404,20 @@ textarea {
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
 }
 
+/* Móviles y pantallas pequeñas */
 @media screen and (max-width: 480px) {
     .hero-title {
         font-size: 1.8rem;
@@ -420,5 +430,16 @@ textarea {
     .nav-links {
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .hero-photo {
+        width: 80%;
+        max-width: 220px;
+        margin: 1rem auto 0 auto;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 }
