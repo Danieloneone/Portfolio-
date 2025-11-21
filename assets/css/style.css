@@ -53,7 +53,7 @@ a {
 }
 
 .navbar.scrolled {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
 }
 
 .nav-logo {
@@ -404,6 +404,25 @@ textarea {
     .hero-buttons {
         flex-direction: column;
         gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar.scrolled {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar.scrolled .nav-logo img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .navbar.scrolled .nav-name {
+        font-size: 1rem;
+    }
+
+    .navbar.scrolled .nav-links li a {
+        font-size: 0.9rem;
     }
 }
 
