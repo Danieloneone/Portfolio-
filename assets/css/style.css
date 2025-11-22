@@ -136,7 +136,6 @@ a {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Menú móvil oculto por defecto */
 .nav-menu {
     display: flex;
     align-items: center;
@@ -205,7 +204,7 @@ a {
 }
 
 /* =========================
-   ANIMATED FRAMES
+   FRAMES DE COLOR (suaves pastel)
 ========================= */
 
 section {
@@ -214,30 +213,23 @@ section {
     margin: 4rem auto;
     border-radius: 22px;
 
-    /* separación visual entre frames */
     border: 2px solid rgba(0,0,0,0.05);
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 
-    /* fondo suave por defecto */
     background-color: #F4F5F7;
-
-    /* animación suave de color */
-    transition: background-color 0.8s ease, border-color 0.8s ease;
+    transition: background-color 0.6s ease;
 }
 
-/* Colores alternados suaves */
-section:nth-child(odd) {
-    background-color: #F4F5F7;
-}
+/* 🎨 Nuevos colores FRAME pastel claros */
+.section-frame-1 { background-color: #F4F5F7; }  /* gris muy claro */
+.section-frame-2 { background-color: #EAF0F6; }  /* celeste pastel */
+.section-frame-3 { background-color: #F7F3E9; }  /* beige claro */
+.section-frame-4 { background-color: #E9F7F1; }  /* verde agua pastel */
+.section-frame-5 { background-color: #F6ECF7; }  /* rosa pastel muy suave */
 
-section:nth-child(even) {
-    background-color: #E8EBEF;
-}
-
-/* cuando entra en scroll → cambia suavemente */
-section.active-frame {
-    background-color: #DDE3EA;
-    border-color: #C7D3E0;
+/* separación visual */
+section + section {
+    margin-top: 4rem;
 }
 
 /* =========================
