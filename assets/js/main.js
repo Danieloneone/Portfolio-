@@ -66,7 +66,7 @@ navLinks.forEach(link => {
 const form = document.querySelector('.contact-form');
 
 if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const successMsg = document.createElement("p");
@@ -101,26 +101,26 @@ const sections = document.querySelectorAll("section");
 // Frame actual
 let frame = 1;
 
-// Total de frames de color (deben coincidir con tu CSS)
+// Total de frames de color (coinciden con tu CSS)
 const totalFrames = 5;
 
 // Escucha el scroll
 window.addEventListener("scroll", () => {
     const scrollPos = window.scrollY;
 
-    // Cada 250px cambia de frame (podemos ajustar este valor)
-    const newFrame = Math.floor(scrollPos / 250) % totalFrames + 1;
+    // Cada 300px cambia de frame (suave y agradable)
+    const newFrame = Math.floor(scrollPos / 300) % totalFrames + 1;
 
     if (newFrame !== frame) {
         frame = newFrame;
 
         sections.forEach(section => {
-            // Eliminar frames viejos
+            // Remover frames viejos
             for (let i = 1; i <= totalFrames; i++) {
                 section.classList.remove(`section-frame-${i}`);
             }
 
-            // Agregar el frame actual
+            // Agregar frame actual
             section.classList.add(`section-frame-${frame}`);
         });
     }
