@@ -514,3 +514,48 @@ textarea {
 
     .nav-links { flex-direction: column; gap: 1rem; }
 }
+
+/* =========================
+   COLOR SCROLL ANIMATIONS
+========================= */
+
+/* Colores base que tenías */
+:root {
+    --color-light: #F4F5F7;
+    --color-soft: #E0E1DD;
+    --color-dark: #0D1B2A;
+    --color-accent: #415A77;
+    --color-accent2: #778DA9;
+}
+
+/* Todas las secciones ahora pueden cambiar de color suavemente */
+section {
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+/* Cada vez que el JS marque un "frame" del scroll */
+.section-frame-1 {
+    background-color: var(--color-soft);
+    color: #0D1B2A;
+}
+
+.section-frame-2 {
+    background-color: var(--color-light);
+    color: #0D1B2A;
+}
+
+.section-frame-3 {
+    background-color: var(--color-accent2);
+    color: #0D1B2A;
+}
+
+.section-frame-4 {
+    background-color: var(--color-dark);
+    color: #E0E1DD;
+}
+
+.section-frame-5 {
+    background-color: var(--color-accent);
+    color: white;
+}
+
