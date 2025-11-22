@@ -101,27 +101,34 @@ const sections = document.querySelectorAll("section");
 // Frame actual
 let frame = 1;
 
-// Total de frames de color (coinciden con tu CSS)
+// Total de frames de color
 const totalFrames = 5;
 
 // Escucha el scroll
 window.addEventListener("scroll", () => {
     const scrollPos = window.scrollY;
 
-    // Cada 300px cambia de frame (suave y agradable)
+    // Cambia cada 300px
     const newFrame = Math.floor(scrollPos / 300) % totalFrames + 1;
 
     if (newFrame !== frame) {
         frame = newFrame;
 
         sections.forEach(section => {
-            // Remover frames viejos
+            // Remover frames anteriores
             for (let i = 1; i <= totalFrames; i++) {
                 section.classList.remove(`section-frame-${i}`);
             }
 
-            // Agregar frame actual
+            // Agregar el nuevo frame
             section.classList.add(`section-frame-${frame}`);
+
+            // 🔥 Borde sutil para distinguir los frames
+            section.style.transition = "background-color 0.7s ease, border 0.5s ease";
+            section.style.border = "2px solid rgba(0,0,0,0.06)";
+            section.style.borderRadius = "10px";
+            section.style.padding = "20px";
+            section.style.marginBottom = "20px";
         });
     }
 });
