@@ -2,25 +2,22 @@
 // ANIMACIONES SUAVES AL SCROLL
 // =========================
 
-// Creamos un IntersectionObserver para animaciones al aparecer
+// IntersectionObserver para animar elementos al aparecer
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('visible'); 
-            observer.unobserve(entry.target); 
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         }
     });
-}, {threshold: 0.2});
+}, { threshold: 0.2 });
 
-// Seleccionamos todos los elementos que queremos animar
+// Elementos animados
 const animatedElements = document.querySelectorAll(
     '.hero-section, .hero-photo, .hero-buttons .btn-primary, .hero-buttons .btn-secondary, .skill-card, .project-card, .btn-primary, .btn-secondary'
 );
 
-// Observamos cada elemento
-animatedElements.forEach(el => {
-    observer.observe(el);
-});
+animatedElements.forEach(el => observer.observe(el));
 
 
 // =========================
@@ -29,7 +26,7 @@ animatedElements.forEach(el => {
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
-    if(window.scrollY > 50 && window.innerWidth <= 768){
+    if (window.scrollY > 50 && window.innerWidth <= 768) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
@@ -43,17 +40,18 @@ window.addEventListener('scroll', () => {
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
-navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');  
-    navMenu.classList.toggle('active');    
-});
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
-// Cerrar menú al hacer click en un link
 const navLinks = document.querySelectorAll('.nav-links li a');
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        if(navMenu.classList.contains('active')){
+        if (navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         }
@@ -68,10 +66,9 @@ navLinks.forEach(link => {
 const form = document.querySelector('.contact-form');
 
 if (form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Evita recargar la página
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-        // Crear mensaje de éxito
         const successMsg = document.createElement("p");
         successMsg.textContent = "✔ ¡Tu mensaje fue enviado con éxito!";
         successMsg.style.color = "white";
@@ -82,15 +79,49 @@ if (form) {
         successMsg.style.textAlign = "center";
         successMsg.style.fontWeight = "600";
 
-        // Agregar debajo del formulario
         form.appendChild(successMsg);
 
-        // Reset al formulario
         form.reset();
 
-        // Eliminar mensaje luego de 4 segundos
         setTimeout(() => {
             successMsg.remove();
         }, 4000);
     });
 }
+
+
+
+// ====================================================
+// CAMBIO DE COLOR ANIMADO POR SCROLL (FRAMES DE COLOR)
+// ====================================================
+
+// Secciones que cambiarán de color
+const sections = document.querySelectorAll("section");
+
+// Frame actual
+let frame = 1;
+
+// Total de frames de color (deben coincidir con tu CSS)
+const totalFrames = 5;
+
+// Escucha el scroll
+window.addEventListener("scroll", () => {
+    const scrollPos = window.scrollY;
+
+    // Cada 250px cambia de frame (podemos ajustar este valor)
+    const newFrame = Math.floor(scrollPos / 250) % totalFrames + 1;
+
+    if (newFrame !== frame) {
+        frame = newFrame;
+
+        sections.forEach(section => {
+            // Eliminar frames viejos
+            for (let i = 1; i <= totalFrames; i++) {
+                section.classList.remove(`section-frame-${i}`);
+            }
+
+            // Agregar el frame actual
+            section.classList.add(`section-frame-${frame}`);
+        });
+    }
+});
