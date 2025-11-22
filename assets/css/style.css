@@ -92,7 +92,7 @@ a {
     list-style: none;
     display: flex;
     gap: 1.8rem;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .nav-links li a {
@@ -126,7 +126,6 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Cuando el menú esté activo */
 .nav-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -161,7 +160,7 @@ a {
     }
 
     .nav-menu.active {
-        max-height: 300px; /* ajustable según cantidad de links */
+        max-height: 300px;
     }
 
     .nav-links {
@@ -205,122 +204,41 @@ a {
     transition: all 0.8s ease-out;
 }
 
-.hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 300px;
-    gap: 1.5rem;
-    text-align: center;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #E0E1DD;
-    font-family: 'Poppins', sans-serif;
-}
-
-.highlight {
-    color: #A9BCD0;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: #DCE1E8;
-    font-family: 'Inter', sans-serif;
-}
-
-/* Contenedor de botones dentro del hero */
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-}
-
-.hero-buttons a {
-    flex: 1 1 200px; /* que entren dentro del cuadro */
-    text-align: center;
-}
-
-.hero-buttons .btn-primary,
-.hero-buttons .btn-secondary {
-    width: 100%; /* ocupan todo el ancho disponible */
-    padding: 0.9rem 1rem;
-    font-size: 1rem;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: all 0.4s ease;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.hero-buttons .btn-primary.visible,
-.hero-buttons .btn-secondary.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.6s ease-out;
-}
-
-.hero-buttons .btn-primary:hover {
-    background: linear-gradient(135deg, #415A77, #1B263B);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(65,90,119,0.35);
-}
-
-.hero-buttons .btn-secondary:hover {
-    background: linear-gradient(135deg, #415A77, #2C4A65);
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(65,90,119,0.35);
-}
-
-.hero-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 300px;
-}
-
-.hero-photo {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid rgba(255,255,255,0.15);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    transition: 0.5s ease;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.hero-photo.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.8s ease-out;
-}
-
-.hero-photo:hover {
-    transform: scale(1.06);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.35);
-}
-
 /* =========================
-   SECTION FRAMES
+   ANIMATED FRAMES
 ========================= */
+
 section {
     padding: 6rem 8%;
     width: 100%;
+    margin: 4rem auto;
+    border-radius: 22px;
+
+    /* separación visual entre frames */
+    border: 2px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+    /* fondo suave por defecto */
+    background-color: #F4F5F7;
+
+    /* animación suave de color */
+    transition: background-color 0.8s ease, border-color 0.8s ease;
 }
 
-.section-light { background: #F4F5F7; }
-.section-soft { background: #E0E1DD; }
-.section-dark { background: #0D1B2A; color: #E0E1DD; }
+/* Colores alternados suaves */
+section:nth-child(odd) {
+    background-color: #F4F5F7;
+}
+
+section:nth-child(even) {
+    background-color: #E8EBEF;
+}
+
+/* cuando entra en scroll → cambia suavemente */
+section.active-frame {
+    background-color: #DDE3EA;
+    border-color: #C7D3E0;
+}
 
 /* =========================
    TITLES
@@ -334,106 +252,10 @@ section {
     font-family: 'Poppins', sans-serif;
 }
 
-h3 {
-    font-weight: 600;
-    margin-top: 0.8rem;
-    margin-bottom: 0.4rem;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* =========================
-   CARDS
-========================= */
-.skill-card,
-.project-card {
-    background: #778DA9;
-    color: #0D1B2A;
-    border-radius: 18px;
-    padding: 2rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.6s ease;
-    margin-bottom: 2rem;
-    font-family: 'Inter', sans-serif;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.skill-card.visible,
-.project-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.skill-card:hover,
-.project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.25);
-}
-
-.skills-grid,
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-.btn-primary {
-    background: #415A77;
-    color: white;
-    border-radius: 12px;
-    padding: 0.9rem 1.8rem;
-    font-weight: 700;
-    text-align: center;
-    transition: all 0.4s ease;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.btn-primary.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.6s ease-out;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(135deg, #415A77, #1B263B);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(65,90,119,0.35);
-}
-
-.btn-secondary {
-    border: 2px solid #415A77;
-    color: #415A77;
-    background: transparent;
-    border-radius: 12px;
-    padding: 0.9rem 1.8rem;
-    font-weight: 700;
-    text-align: center;
-    transition: all 0.4s ease;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.btn-secondary.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.6s ease-out;
-}
-
-.btn-secondary:hover {
-    background: linear-gradient(135deg, #415A77, #2C4A65);
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(65,90,119,0.35);
-}
-
 /* =========================
    INPUTS MODERNOS
 ========================= */
+
 input, textarea {
     width: 100%;
     padding: 1.1rem 1.3rem;
@@ -459,103 +281,12 @@ textarea {
 }
 
 /* =========================
-   MEDIA QUERIES (RESPONSIVE)
+   RESPONSIVE
 ========================= */
+
 @media screen and (max-width: 992px) {
     .hero-section {
         flex-direction: column;
         padding: 3rem 2rem;
     }
-
-    .hero-left, .hero-right {
-        flex: 1 1 100%;
-        text-align: center;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        gap: 1rem;
-    }
 }
-
-@media screen and (max-width: 768px) {
-    .navbar.scrolled {
-        padding: 0.5rem 1rem;
-    }
-
-    .navbar.scrolled .nav-logo img {
-        width: 35px;
-        height: 35px;
-    }
-
-    .navbar.scrolled .nav-name {
-        font-size: 1rem;
-    }
-
-    .navbar.scrolled .nav-links li a {
-        font-size: 0.9rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero-title { font-size: 1.8rem; }
-    .hero-subtitle { font-size: 1rem; }
-
-    .hero-photo {
-        width: 80%;
-        max-width: 220px;
-        margin: 1rem auto 0 auto;
-    }
-
-    .skills-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .nav-links { flex-direction: column; gap: 1rem; }
-}
-
-/* =========================
-   COLOR SCROLL ANIMATIONS
-========================= */
-
-/* Colores base que tenías */
-:root {
-    --color-light: #F4F5F7;
-    --color-soft: #E0E1DD;
-    --color-dark: #0D1B2A;
-    --color-accent: #415A77;
-    --color-accent2: #778DA9;
-}
-
-/* Todas las secciones ahora pueden cambiar de color suavemente */
-section {
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-/* Cada vez que el JS marque un "frame" del scroll */
-.section-frame-1 {
-    background-color: var(--color-soft);
-    color: #0D1B2A;
-}
-
-.section-frame-2 {
-    background-color: var(--color-light);
-    color: #0D1B2A;
-}
-
-.section-frame-3 {
-    background-color: var(--color-accent2);
-    color: #0D1B2A;
-}
-
-.section-frame-4 {
-    background-color: var(--color-dark);
-    color: #E0E1DD;
-}
-
-.section-frame-5 {
-    background-color: var(--color-accent);
-    color: white;
-}
-
