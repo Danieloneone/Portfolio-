@@ -2,7 +2,6 @@
 // ANIMACIONES SUAVES AL SCROLL
 // =========================
 
-// IntersectionObserver para animar elementos al aparecer
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -12,116 +11,75 @@ const observer = new IntersectionObserver((entries, observer) => {
     });
 }, { threshold: 0.2 });
 
-// Elementos animados
+// Elementos a animar
 const animatedElements = document.querySelectorAll(
     '.hero-section, .hero-photo, .hero-buttons .btn-primary, .hero-buttons .btn-secondary, .skill-card, .project-card, .btn-primary, .btn-secondary'
 );
 
-animatedElements.forEach(el => observer.observe(el));
-
-
-// =========================
-// NAVBAR COMPACTO AL SCROLL (solo móviles/tablets)
-// =========================
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50 && window.innerWidth <= 768) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+// Activar observer
+animatedElements.forEach(el => {
+    observer.observe(el);
 });
 
 
 // =========================
-// MENÚ DESPLEGABLE (HAMBURGER) - MOBILE
+// NAVBAR HAMBURGUESA
 // =========================
+
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-links a');
 
-if (navToggle) {
+// Abrir / cerrar menú
+if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
+
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !expanded);
     });
 }
 
-const navLinks = document.querySelectorAll('.nav-links li a');
-
+// Cerrar menú al hacer click en un link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
             navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
         }
     });
 });
 
 
 // =========================
-// FORMULARIO: MENSAJE DE ENVÍO EXITOSO + RESET
+// CERRAR MENÚ AL HACER CLICK FUERA
 // =========================
 
-const form = document.querySelector('.contact-form');
-
-if (form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const successMsg = document.createElement("p");
-        successMsg.textContent = "✔ ¡Tu mensaje fue enviado con éxito!";
-        successMsg.style.color = "white";
-        successMsg.style.background = "#28a745";
-        successMsg.style.padding = "12px";
-        successMsg.style.borderRadius = "8px";
-        successMsg.style.marginTop = "10px";
-        successMsg.style.textAlign = "center";
-        successMsg.style.fontWeight = "600";
-
-        form.appendChild(successMsg);
-
-        form.reset();
-
-        setTimeout(() => {
-            successMsg.remove();
-        }, 4000);
-    });
-}
+document.addEventListener('click', (e) => {
+    if (
+        navMenu.classList.contains('active') &&
+        !navMenu.contains(e.target) &&
+        !navToggle.contains(e.target)
+    ) {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+    }
+});
 
 
+// =========================
+// OPCIONAL: SOMBRA AL SCROLL EN NAVBAR
+// =========================
 
-// ====================================================
-// CAMBIO DE COLOR ANIMADO POR SCROLL (FRAMES DE COLOR)
-// ====================================================
+const navbar = document.querySelector('.navbar');
 
-// Secciones que cambiarán de color
-const sections = document.querySelectorAll("section");
-
-// Frame actual
-let frame = 1;
-
-// Total de frames de color (coinciden con tu CSS)
-const totalFrames = 5;
-
-// Escucha el scroll
-window.addEventListener("scroll", () => {
-    const scrollPos = window.scrollY;
-
-    // Cada 300px cambia de frame (suave y agradable)
-    const newFrame = Math.floor(scrollPos / 300) % totalFrames + 1;
-
-    if (newFrame !== frame) {
-        frame = newFrame;
-
-        sections.forEach(section => {
-            // Remover frames viejos
-            for (let i = 1; i <= totalFrames; i++) {
-                section.classList.remove(`section-frame-${i}`);
-            }
-
-            // Agregar frame actual
-            section.classList.add(`section-frame-${frame}`);
-        });
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.style.boxShadow = "0 4px 20px rgba(0,0,0,0.2)";
+    } else {
+        navbar.style.boxShadow = "0 2px 16px rgba(0,0,0,0.12)";
     }
 });
